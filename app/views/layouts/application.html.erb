@@ -10,7 +10,10 @@
 
   <body>
     <% if user_signed_in? %>
-      <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+      <p>
+        <%= current_user.username %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </p>
     <% end %>
 
     <p class="notice"><%= notice %></p>
