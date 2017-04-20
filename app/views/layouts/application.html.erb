@@ -10,24 +10,20 @@
 
   <body>
     <nav class="navbar navbar-default">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="">ChatApp</a>
-      </div>
       <ul class="nav navbar-nav">
-        <li><a href="">Link1</a></li>
-        <li><a href="">Link2</a></li>
+        <li><%= link_to "ChatApp", root_path, method: :get %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "管理者画面", rails_admin_path, method: :get %></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="">Link3</a></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% elsif %>
+          <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <% end %>
       </ul>
     </nav>
-
-    <% if user_signed_in? %>
-      <p>
-        <%= current_user.username %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </p>
-    <% end %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
